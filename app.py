@@ -13,7 +13,7 @@ db = create_engine(DATABASE_URL)
 
 @app.route('/')
 def index():
-    pass
+    return 'Stop it Flask!'
 
 
 if __name__ == '__main__':
