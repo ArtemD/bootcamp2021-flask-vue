@@ -2,10 +2,17 @@ from flask import Flask
 from flask import render_template
 from sqlalchemy import create_engine
 import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
+
+load_dotenv()
+
 DATABASE_URL = os.environ['DATABASE_URL']
+TW_ACCOUNT = os.environ['TW_ACCOUNT']
+TW_AUTH = os.environ['TW_AUTH']
+
 
 db = create_engine(DATABASE_URL)
 
@@ -21,4 +28,5 @@ def names():
     return render_template('names.html', names=results)
 
 if __name__ == '__main__':
+    app.config['DEBUG']=True
     app.run(threaded=True, port=5000)
