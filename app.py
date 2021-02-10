@@ -10,9 +10,6 @@ app = Flask(__name__)
 load_dotenv()
 
 DATABASE_URL = os.environ['DATABASE_URL']
-TW_ACCOUNT = os.environ['TW_ACCOUNT']
-TW_AUTH = os.environ['TW_AUTH']
-
 
 db = create_engine(DATABASE_URL)
 

@@ -9,6 +9,8 @@ gunicorn = "*"
 psycopg2 = "*"
 sqlalchemy = "*"
 python-dotenv = "*"
+tqdm = "*"
+termcolor = "*"
 
 [dev-packages]
 
