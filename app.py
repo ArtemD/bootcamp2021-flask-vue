@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, jsonify, request, redirect
+from flask import render_template, jsonify, request, redirect, abort
 from sqlalchemy import create_engine, text
 import os
 from dotenv import load_dotenv
@@ -16,8 +16,11 @@ def insert_db_data(name, address, postcode, city, date, type, businessid):
     VALUES ( :name, :address, :postcode, :city, :date, :license_type, :bid )""")
     return db.execute(sql, {'name':name, 'address':address, 'postcode':postcode, 'city':city, 'date':date, 'license_type':type, 'bid':businessid})
 
-
-
+def search_db_data(keyword):
+    clean_keyword = keyword.replace(';', '')
+    sql = "SELECT * from alcohol_license_places WHERE \"name\" LIKE '%%{0}%%' OR business_id LIKE '%%{0}%%'".format(clean_keyword)
+    results = db.execute(sql)
+    return results
 
 def get_db_data():
     sql = text('SELECT * from alcohol_license_places')
@@ -45,6 +48,24 @@ def submit():
             return "Data NOT INSERTED"
     else:
         return redirect('/form')
+
+@app.route('/api/search/')
+@app.route('/api/search/<keyword>')
+def search(keyword=None):
+    if keyword:
+        results = search_db_data(keyword)
+
+        data = []
+        line = 0 
+
+        for row in results:
+            r = [row['name'],row['address'], row['postcode'],  row['city'],  row['license_granting_date'],  row['license_type'], row['business_id']]
+            data.insert(line, r)
+            line +=1
+
+        return jsonify({'data': data})
+    else:
+        abort(404)
 
 @app.route('/api/all')
 def api():
