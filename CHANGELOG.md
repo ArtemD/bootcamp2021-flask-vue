@@ -1,3 +1,7 @@
+## [1.0.2] - 16.2.2021
+
+- Refactored program and separated api and sql logic in their own modules
+
 ## [1.0.1] - 16.2.2021
 
 - FIX: Fixed sql injection reported by client
