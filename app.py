@@ -18,7 +18,8 @@ def insert_db_data(name, address, postcode, city, date, type, businessid):
 
 def search_db_data(keyword):
     clean_keyword = keyword.replace(';', '')
-    sql = "SELECT * from alcohol_license_places WHERE \"name\" LIKE '%%{0}%%' OR business_id LIKE '%%{0}%%'".format(clean_keyword)
+    clean_keyword2 = clean_keyword.replace('\\', '')
+    sql = "SELECT * from alcohol_license_places WHERE \"name\" LIKE '%%{0}%%' OR business_id LIKE '%%{0}%%'".format(clean_keyword2)
     results = db.execute(sql)
     return results
 
