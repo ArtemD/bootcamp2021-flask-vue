@@ -6,8 +6,6 @@ from tqdm import tqdm
 from database.operations import insert_db_data
 os.system('color')
 
-
-
 # Just print some info that we're starting (in green)
 cprint(f'\n Processing CSV file...', 'green', attrs=['reverse'])
 

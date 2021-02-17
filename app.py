@@ -4,18 +4,29 @@ from database.operations import insert_db_data
 from api import get_json
 
 app = Flask(__name__)
+""" Flask instance """
 
 @app.route('/')
 def index():
+    """
+    Display homepage template
+    """
     return render_template('front-page.html')
 
 @app.route('/form')
 def form():
+    """
+    Display form for content insertion
+    """
     return render_template('form.html')
 
 @app.route('/submit', methods=['POST', 'GET'])
 def submit():
+    """
+    Process form's data or redirect if data is not correct.
 
+    Also redirects if methods!=POST
+    """
     if request.method!='POST':
         return redirect('/form')
 
@@ -29,13 +40,26 @@ def submit():
 
 @app.route('/api/search/')
 @app.route('/api/search/<keyword>')
-def search(keyword=None):   
+def search(keyword=None):
+    """
+    Display search results in JSON format
+
+    Parameters
+    ----------
+    keyword : str
+        Search keyword. Default None
+    """
     return get_json(False, keyword)
 
 @app.route('/api/all')
 def api():
+    """
+    Return all rows found in database in JSON format
+    """
     return get_json()
 
 if __name__ == '__main__':
     app.config['DEBUG']=True
+    """ Set debugging on when using localhost """
     app.run(threaded=True, port=5000)
+    """ Run Flask dev server on port 5000 """
