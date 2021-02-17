@@ -36,7 +36,7 @@ python app.py
 
 ## Setting up App platform in DigitalOcean
 
-!()[https://dl.dropboxusercontent.com/s/1bd57jbxb5j29cm/2021-02-17_11-36-05.gif]
+![](https://dl.dropboxusercontent.com/s/1bd57jbxb5j29cm/2021-02-17_11-36-05.gif)
 
 # Dcoumentation
 
