@@ -15,7 +15,9 @@ def __generate_json(results):
         data.insert(line, r)
         line +=1
 
-    return jsonify({'data': data})
+    response = jsonify({'data': data})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 def get_json(all=True, search_keyword=None):
     """ 
