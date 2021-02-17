@@ -13,7 +13,16 @@ Application can be easily deployed to Heroku or DigitalOcean. Have been tested o
 
 # Config file
 
-Make sure to create .env file in your project root (see .env_example) which contains correct DATABASE URI connection string. This will allow you to run application locally and connect to correct database.
+Make sure to create .env file in your project root (see .env_example) which contains correct DATABASE URI connection string. This will allow you to run application locally and connect to correct database. Locally you can use SQLite.
+
+In order to create needed tables do following:
+
+```
+# Run pipenv commands if you didn't yet
+# pipenv install
+# pipenv shell
+python create_db.py
+```
 
 # Runnig application
 
