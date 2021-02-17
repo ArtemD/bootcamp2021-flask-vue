@@ -6,7 +6,7 @@ def __generate_json(results):
     line = 0 
 
     for row in results:
-        r = [row['name'],row['address'], row['postcode'],  row['city'],  row['license_granting_date'],  row['license_type'], row['business_id']]
+        r = [row.name ,row.address, row.postcode,  row.city,  row.license_granting_date,  row.license_type, row.business_id]
         data.insert(line, r)
         line +=1
 

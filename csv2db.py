@@ -3,17 +3,10 @@ import os
 from pprint import pprint as pp
 from termcolor import cprint
 from tqdm import tqdm
-from sqlalchemy import create_engine, text
-from dotenv import load_dotenv
+from database.operations import insert_db_data
 os.system('color')
 
-load_dotenv()
 
-# Get postgres URI
-DATABASE_URL = os.environ['DATABASE_URL']
-
-# connect to db
-db = create_engine(DATABASE_URL)
 
 # Just print some info that we're starting (in green)
 cprint(f'\n Processing CSV file...', 'green', attrs=['reverse'])
@@ -40,8 +33,7 @@ with tqdm (total=num_lines) as pbar:
             if line_count != 0:
                 
                 # Create SQL query using sqlalchemy params
-                sql = text('INSERT INTO alcohol_license_places("name", address, postcode, city, license_granting_date, license_type, business_id)  VALUES ( :name, :address, :postcode, :city, :date, :license_type, :bid )')
-                result = db.execute(sql, {'name':row[0], 'address':row[1], 'postcode':row[2], 'city':row[3], 'date':row[5], 'license_type':row[6], 'bid':row[7]})
+                result = insert_db_data(name=row[0], address=row[1], postcode=row[2], city=row[3], date=row[5], type=row[6], businessid=row[7])
 
                 if result==False:
                     cprint(f'\n Could not save this row', 'red', attrs=['reverse'])

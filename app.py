@@ -29,7 +29,7 @@ def submit():
 
 @app.route('/api/search/')
 @app.route('/api/search/<keyword>')
-def search(keyword=None):
+def search(keyword=None):   
     return get_json(False, keyword)
 
 @app.route('/api/all')

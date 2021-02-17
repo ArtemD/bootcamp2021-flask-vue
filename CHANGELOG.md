@@ -1,3 +1,7 @@
+## [1.1.0] - 17.2.2021
+
+- Changed from native SQL to SQLAlchemy ORM for better security and usability
+
 ## [1.0.2] - 16.2.2021
 
 - Refactored program and separated api and sql logic in their own modules
